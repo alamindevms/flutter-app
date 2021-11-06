@@ -2,8 +2,16 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(const MaterialApp(home: Home()));
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  int score = 1;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,10 +54,9 @@ class Home extends StatelessWidget {
             Text(
               'Name:',
               style: TextStyle(
-                fontSize: 20,
-                color: Colors.grey.shade600,
-                letterSpacing: 1.5
-              ),
+                  fontSize: 20,
+                  color: Colors.grey.shade600,
+                  letterSpacing: 1.5),
             ),
             const SizedBox(
               height: 10,
@@ -67,17 +74,13 @@ class Home extends StatelessWidget {
             Text(
               'Designation:',
               style: TextStyle(
-                fontSize: 20,
-                color: Colors.grey.shade600,
-                letterSpacing: 1.5
-              ),
+                  fontSize: 20,
+                  color: Colors.grey.shade600,
+                  letterSpacing: 1.5),
             ),
             Text(
               'Front-end Developer',
-              style: TextStyle(
-                fontSize: 30,
-                color: Colors.cyan.shade700
-              ),
+              style: TextStyle(fontSize: 30, color: Colors.cyan.shade700),
             ),
             const SizedBox(
               height: 20,
@@ -85,20 +88,16 @@ class Home extends StatelessWidget {
             Text(
               'Company:',
               style: TextStyle(
-                fontSize: 20,
-                color: Colors.grey.shade600,
-                letterSpacing: 1.5
-              ),
+                  fontSize: 20,
+                  color: Colors.grey.shade600,
+                  letterSpacing: 1.5),
             ),
             const SizedBox(
               height: 10,
             ),
             Text(
               'Mistri Solutions Ltd.',
-              style: TextStyle(
-                fontSize: 30,
-                color: Colors.cyan.shade700
-              ),
+              style: TextStyle(fontSize: 30, color: Colors.cyan.shade700),
             ),
             const SizedBox(
               height: 20,
@@ -115,24 +114,41 @@ class Home extends StatelessWidget {
                 Text(
                   'alamin.mistrisolutions@gmail.com',
                   style: TextStyle(
-                    color: Colors.grey.shade400,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w700
-                  ),
+                      color: Colors.grey.shade400,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w700),
                 )
               ],
-            )
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Text(
+              'Score:',
+              style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.grey.shade600,
+                  letterSpacing: 1.5),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Text(
+              '$score',
+              style: TextStyle(fontSize: 30, color: Colors.cyan.shade700),
+            ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          setState(() {
+            score += 1;
+          });
+        },
         child: const Text(
           '+',
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w700
-          ),
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
         ),
         backgroundColor: Colors?.cyan[800],
       ),
