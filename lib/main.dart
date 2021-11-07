@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'quote.dart';
 void main() => runApp(const MaterialApp(home: Home()));
 
 class Home extends StatefulWidget {
@@ -11,10 +12,49 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int score = 1;
+  List<Quote> quotes = [
+    Quote(author: 'author one', text: 'quote one'),
+    Quote(author: 'author two', text: 'quote two'),
+    Quote(author: 'author three', text: 'quote three'),
+  ];
+
+  Widget quoteTemplate(quote){
+    return Card(
+      color: Colors.amber.shade100,
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              quote.text,
+              style: TextStyle(
+                color: Colors.grey.shade600,
+                fontSize: 17,
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Text(
+              quote.author,
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.grey.shade900,
+                fontWeight: FontWeight.bold,
+                fontStyle: FontStyle.italic
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text('Empolyee ID Card'),
         centerTitle: false,
@@ -22,8 +62,7 @@ class _HomeState extends State<Home> {
       ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(15, 20, 15, 5),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
           children: [
             const Center(
               child: CircleAvatar(
@@ -137,6 +176,23 @@ class _HomeState extends State<Home> {
               '$score',
               style: TextStyle(fontSize: 30, color: Colors.cyan.shade700),
             ),
+            const SizedBox(
+              height: 20,
+            ),
+            Text(
+              'Quotes:',
+              style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.grey.shade600,
+                  letterSpacing: 1.5),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: quotes.map((quote) => quoteTemplate(quote)).toList(),
+            )
           ],
         ),
       ),
