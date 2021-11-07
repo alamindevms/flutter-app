@@ -160,7 +160,16 @@ class _HomeState extends State<Home> {
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: quotes.map((quote) => QuoteCard(quote)).toList(),
+              children: quotes
+                  .map((quote) => QuoteCard(
+                    quote, 
+                    () {
+                        setState(() {
+                          quotes.remove(quote);
+                        });
+                      })
+                    )
+                  .toList(),
             )
           ],
         ),
